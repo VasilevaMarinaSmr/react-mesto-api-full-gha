@@ -1,0 +1,7 @@
+.element__info-container {
+  display: flex;
+  width: 246px;
+  padding: 22px 15px 31px 21px;
+  flex-direction: row;
+  justify-content: space-between;
+}

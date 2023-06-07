@@ -1,0 +1,11 @@
+.header__info {
+    display: flex;
+    margin-top: 6px;
+    gap: 24px;    
+  }
+  
+  @media screen and (max-width: 800px) {
+    .header__info {
+      margin-right: 27px;
+    }
+  }

@@ -1,0 +1,15 @@
+.form-popup__save_disabled {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000000;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  opacity: 0.2;
+}
+
+.form-popup__save_disabled:hover {
+  cursor: default;
+}

@@ -1,0 +1,23 @@
+.login__input {
+    display: block;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+    margin: 0 auto 30px;
+    padding-bottom: 6px;
+    border: none;
+    border-bottom: 2px solid #cccccc;
+    color: #FFF;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    line-height: 100%;
+    background-color: transparent;
+}
+
+.login__input:focus-visible{
+    outline: none;
+}

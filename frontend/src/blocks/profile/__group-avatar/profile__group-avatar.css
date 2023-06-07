@@ -1,0 +1,7 @@
+.profile__group-avatar {
+  position: relative;
+  cursor: pointer;
+}
+.profile__group-avatar:hover .profile__avatar-edit {
+  display: block;
+}

@@ -1,0 +1,31 @@
+.header__nav-link {
+    display: flex;
+    font-family: "Inter", "Arial", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.22;
+    color: #ffffff;
+    margin-top: 6px;
+    text-decoration: none;    
+  }
+
+  @media screen and (max-width: 950px) {
+    .header__nav-link {
+      margin-right: 30px;
+      font-size: 16px;
+      line-height: 1.22;
+    }
+  }
+  
+  @media screen and (max-width: 450px) {
+    .header__nav-link {
+      font-size: 14px;
+      line-height: 1.21;
+    }
+  }
+
+  .header__nav-link:hover {
+    opacity: 0.6;
+  }
+  

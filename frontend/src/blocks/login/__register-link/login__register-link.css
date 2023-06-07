@@ -1,0 +1,14 @@
+.login__register-link {
+    font-family: "Inter", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .login__register-link:hover {
+    opacity: .6;
+  }

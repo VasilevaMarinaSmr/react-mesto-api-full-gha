@@ -1,0 +1,7 @@
+.form-popup__profile-info {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: none;
+    padding: 0;
+}
