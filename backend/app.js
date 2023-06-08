@@ -10,6 +10,7 @@ const { login, createUser, logout } = require('./controllers/users');
 const NotFoundError = require('./errors/not-found-error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { urlTemplate } = require('./utils/url-template');
+const corsconf = require('./middlewares/corsconf');
 
 const app = express();
 const { PORT = 3000 } = process.env;
@@ -23,6 +24,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(corsconf);
+
 app.post(
   '/signin',
   celebrate({

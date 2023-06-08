@@ -86,9 +86,8 @@ export class Api {
 
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-60",
-  headers: {
-    authorization: "aa8e790a-3250-4e42-83f6-285a574f94a9",
+  baseUrl: "https://api.miimesto.nomoredomains.rocks",
+  headers: {    
     "Content-Type": "application/json",
   },
 });
