@@ -9,7 +9,8 @@ const checkResponse = (res) => {
 
 export const login = (authData) => {
   return fetch(`${BASE_URL}/signin`, {
-    method: "POST",    
+    method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -37,6 +38,7 @@ export const register = (authData) => {
 export const getAuthData = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

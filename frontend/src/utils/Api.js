@@ -13,13 +13,17 @@ export class Api {
 
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
+      method: "GET",
       headers: this.headers,
+      credentials: 'include'
     }).then(this._checkResponse);
   }
 
   getInitialCards() {
     return fetch(`${this.baseUrl}/cards`, {
+      method: "GET",
       headers: this.headers,
+      credentials: 'include'
     }).then(this._checkResponse);
   }
 
@@ -27,6 +31,7 @@ export class Api {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: this.headers,
+      credentials: 'include',
       body: JSON.stringify({
         name: name,
         about: profession,
@@ -38,6 +43,7 @@ export class Api {
     return fetch(`${this.baseUrl}/cards`, {
       method: "POST",
       headers: this.headers,
+      credentials: 'include',
       body: JSON.stringify({
         name: cardProperties.name,
         link: cardProperties.link,
@@ -49,12 +55,14 @@ export class Api {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this.headers,
+      credentials: 'include',
     }).then(this._checkResponse);
   }
 
   removeLike(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
+      credentials: "include",
       headers: this.headers,
     }).then(this._checkResponse);
   }
@@ -62,6 +70,7 @@ export class Api {
   changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: isLiked ? "PUT" : "DELETE",
+      credentials: "include",
       headers: this.headers,
     }).then(this._checkResponse);
   }
@@ -77,6 +86,7 @@ export class Api {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this.headers,
+      credentials: "include",
       body: JSON.stringify({
         avatar: link,
       }),
