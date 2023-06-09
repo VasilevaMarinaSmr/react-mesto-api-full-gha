@@ -3,7 +3,7 @@ const allowedCors = [
   'https://miimesto.nomoredomains.rocks',
   'http://api.miimesto.nomoredomains.rocks',
   'https://api.miimesto.nomoredomains.rocks',
-  'http://localhost:3000'
+  'http://localhost:3000',
 ];
 
 const corsConfig = (req, res, next) => {
@@ -13,7 +13,7 @@ const corsConfig = (req, res, next) => {
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
   if (allowedCors.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Credentials', true);
   }
 
