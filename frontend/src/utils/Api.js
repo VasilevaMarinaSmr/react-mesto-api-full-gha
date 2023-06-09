@@ -86,7 +86,6 @@ export class Api {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this.headers,
-      credentials: "include",
       body: JSON.stringify({
         avatar: link,
       }),

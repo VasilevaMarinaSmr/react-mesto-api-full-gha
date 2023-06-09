@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import api from "../utils/Api.js";
-import { getAuthData, login, register } from "../utils/Auth.js";
+import { login, register } from "../utils/Auth.js";
 import AddPlacePopup from "./AddPlacePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
@@ -30,23 +30,26 @@ function App() {
   const [userEmail, setUserEmail] = useState("");
   const [isRegSuccess, setRegSuccess] = useState(false);
 
-  useEffect(() => {
-    const localStorageToken = localStorage.getItem("jwt");
-    if (localStorageToken) {
-      getAuthData(localStorageToken)
-        .then((res) => {
-          if (res) {
-            setUserEmail(res.data.email);
-            setLoggedIn(true);
-            navigate("/", { replace: true });
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [isLoggedIn]);
-
+useEffect(() => {
+  checkToken();
+  }, []);
+  
+function checkToken() {
+  auth
+    .getAuthData()
+    .then((res) => {
+      if (res.status === 401 || res.status === 403) {
+        setLoggedIn(false);
+        setCurrentUser({});
+        history.push("/signin");
+      } else {
+        setIsAuth(true);
+        setLoggedIn(true);
+        navigate("/", { replace: true });
+      }
+    })
+    .catch((err) => console.error(err));
+  
   useEffect(() => {
     api
       .getUserInfo()

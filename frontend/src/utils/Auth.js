@@ -35,7 +35,7 @@ export const register = (authData) => {
   }).then(checkResponse);
 };
 
-export const getAuthData = (token) => {
+export const  = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     credentials: "include",
