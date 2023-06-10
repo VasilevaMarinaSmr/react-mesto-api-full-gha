@@ -53,7 +53,7 @@ function checkAuth() {
   useEffect(() => {
     api
       .getUserInfo()
-      .then((res) => setCurrentUser(res))
+      .then((res) => setCurrentUser(res.user))
       .catch((err) => console.log(err));
   }, []);
 
