@@ -1,4 +1,4 @@
-export const BASE_URL = "http://api.miimesto.nomoredomains.rocks";
+export const BASE_URL = "https://api.miimesto.nomoredomains.rocks";
 
 const checkResponse = (res) => {
   if (res.ok) {
