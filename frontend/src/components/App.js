@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import api from "../utils/Api.js";
-import { login, register } from "../utils/Auth.js";
+import { getAuthData, login, register } from "../utils/Auth.js";
 import AddPlacePopup from "./AddPlacePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
@@ -31,25 +31,25 @@ function App() {
   const [isRegSuccess, setRegSuccess] = useState(false);
 
 useEffect(() => {
-  checkToken();
+  checkAuth();
   }, []);
   
-function checkToken() {
-  auth
-    .getAuthData()
+function checkAuth() {
+  getAuthData()
     .then((res) => {
       if (res.status === 401 || res.status === 403) {
         setLoggedIn(false);
         setCurrentUser({});
-        history.push("/signin");
-      } else {
-        setIsAuth(true);
+        navigate("/signin", { replace: true });
+        } else {
+        setUserEmail(res.data.email); /// вот тут вопрос
         setLoggedIn(true);
         navigate("/", { replace: true });
       }
     })
     .catch((err) => console.error(err));
-  
+}
+
   useEffect(() => {
     api
       .getUserInfo()
@@ -133,7 +133,7 @@ function checkToken() {
   }
 
   const handleLogout = () => {
-    localStorage.removeItem("jwt");
+    setCurrentUser({});
     setLoggedIn(false);
     navigate("/sign-in", { replace: true });
   };
@@ -141,12 +141,10 @@ function checkToken() {
   function handleLogin(authData) {
     login(authData)
       .then((res) => {
-        if (res.token) {
-          localStorage.setItem("jwt", res.token);
-          setUserEmail(res.email);
-          setLoggedIn(true);
-          navigate("/", { replace: true });
-        }
+        setCurrentUser(res);
+        setUserEmail(res.email);
+        setLoggedIn(true);
+        navigate("/", { replace: true });
       })
       .catch((err) => {
         setLoggedIn(false);
