@@ -28,7 +28,7 @@ export class Api {
   }
 
   getStartData() {
-    return Promise.all([this.getUsers(), this.getInitialCards()]);
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
   
   updateProfile(name, profession) {
