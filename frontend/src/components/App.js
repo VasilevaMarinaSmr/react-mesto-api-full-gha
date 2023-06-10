@@ -52,8 +52,8 @@ useEffect(() => {
   api
     .getStartData()
     .then(([user, cards]) => {
-      setCurrentUser(user);
-      setCards(cards.reverse());
+      setCurrentUser(user.user);
+      setCards(cards);
     })
       .catch((err) => console.log(err));
   }, [isLoggedIn]);
