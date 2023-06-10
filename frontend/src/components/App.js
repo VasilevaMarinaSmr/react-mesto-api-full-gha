@@ -40,7 +40,7 @@ function checkAuth() {
         setCurrentUser({});
         navigate("/signin", { replace: true });
         } else {
-        setUserEmail(res.user.email); /// вот тут вопрос
+        setUserEmail(res.email); /// вот тут вопрос
         setLoggedIn(true);
         navigate("/", { replace: true });
       }
@@ -52,7 +52,7 @@ useEffect(() => {
   api
     .getStartData()
     .then(([user, cards]) => {
-      setCurrentUser(user.user);
+      setCurrentUser(user);
       setCards(cards);
     })
       .catch((err) => console.log(err));
