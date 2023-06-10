@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 051.250.027.071
+IP 051.250.027.071
 
 Frontend https://miimesto.nomoredomains.rocks
 
