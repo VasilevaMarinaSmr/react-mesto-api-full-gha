@@ -42,7 +42,7 @@ function checkAuth() {
         setCurrentUser({});
         navigate("/signin", { replace: true });
         } else {
-        setUserEmail(res.data.email); /// вот тут вопрос
+        setUserEmail(res.user.email); /// вот тут вопрос
         setLoggedIn(true);
         navigate("/", { replace: true });
       }
