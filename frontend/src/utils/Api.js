@@ -78,6 +78,7 @@ export class Api {
   deleteCard(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: "DELETE",
+      credentials: "include",
       headers: this.headers,
     }).then(this._checkResponse);
   }
@@ -86,6 +87,7 @@ export class Api {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this.headers,
+      credentials: "include",
       body: JSON.stringify({
         avatar: link,
       }),
