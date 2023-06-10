@@ -123,13 +123,15 @@ module.exports.login = (req, res, next) => {
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         { expiresIn: '7d' },
       );
-      res
-        .cookie('jwt', token, {
-          maxAge: 3600000 * 24 * 7,
-          httpOnly: true,
-          sameSite: true,
-        })
-        .send({ token });
+      User.findOne({ email }).then((user) => {
+        res
+          .cookie('jwt', token, {
+            httpOnly: true,
+            sameSite: true,
+            maxAge: 360000 * 24 * 7,
+          })
+          .send(user);
+      });
     })
     .catch(next);
 };
