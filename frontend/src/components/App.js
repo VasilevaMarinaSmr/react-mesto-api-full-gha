@@ -30,9 +30,7 @@ function App() {
   const [userEmail, setUserEmail] = useState("");
   const [isRegSuccess, setRegSuccess] = useState(false);
 
-useEffect(() => {
-  checkAuth();
-  }, []);
+
   
 function checkAuth() {
   getAuthData()
@@ -50,19 +48,20 @@ function checkAuth() {
     .catch((err) => console.error(err));
 }
 
-  useEffect(() => {
-    api
-      .getUserInfo()
-      .then((res) => setCurrentUser(res.user))
+useEffect(() => {
+  api
+    .getStartData()
+    .then(([user, cards]) => {
+      setCurrentUser(user);
+      setCards(cards.reverse());
+    })
       .catch((err) => console.log(err));
-  }, []);
+  }, [isLoggedIn]);
 
+ 
   useEffect(() => {
-    api
-      .getInitialCards()
-      .then((res) => setCards(res))
-      .catch((err) => console.log(err));
-  }, []);
+    checkAuth();
+    }, []);
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);

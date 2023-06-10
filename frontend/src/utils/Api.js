@@ -27,6 +27,10 @@ export class Api {
     }).then(this._checkResponse);
   }
 
+  getStartData() {
+    return Promise.all([this.getUsers(), this.getInitialCards()]);
+  }
+  
   updateProfile(name, profession) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
