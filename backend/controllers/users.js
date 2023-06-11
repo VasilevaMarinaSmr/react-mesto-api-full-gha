@@ -54,10 +54,8 @@ module.exports.createUser = (req, res, next) => {
     }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(
-          // eslint-disable-next-line comma-dangle
-          new ErrorRequest('Переданы некорректные данные при создании пользователя.')
-        );
+        next(new ErrorRequest('Переданы некорректные данные при создании пользователя.'));
+        return;
       }
       if (err.code === 11000) {
         next(new ConflictError('Пользователь с таким email уже существует'));
@@ -136,8 +134,7 @@ module.exports.login = (req, res, next) => {
     .catch(next);
 };
 
-// eslint-disable-next-line no-unused-vars
-module.exports.logout = (req, res, next) => {
+module.exports.logout = (req, res) => {
   res
     .clearCookie('jwt', { httpOnly: true, sameSite: true })
     .send({ message: 'Вы успешно вышли' });

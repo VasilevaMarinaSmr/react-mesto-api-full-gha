@@ -2,7 +2,6 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const { auth } = require('./middlewares/auth');
@@ -21,8 +20,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
 
 app.use(corsconf);
 app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -58,14 +57,11 @@ app.use('/', require('./routes/users'));
 app.use('/', require('./routes/cards'));
 
 app.post('/signout', logout);
-
-app.use('*', () => {
-  throw new NotFoundError('Cтраница не существует');
+app.use('*', (req, res, next) => {
+  next(new NotFoundError('Cтраница не существует'));
 });
-
 app.use(errorLogger);
 app.use(errors());
-
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = statusCode === 500 ? 'На сервере произошла ошибка' : err.message;
